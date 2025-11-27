@@ -411,6 +411,8 @@ void AP_Logger::Write_Compass_instance(const uint64_t time_us, const uint8_t mag
 {
     const Compass &compass = AP::compass();
 
+    int16_t my_mag_field_x = (int16_t)mag_field.x;
+    
     const Vector3f &mag_field = compass.get_field(mag_instance);
     const Vector3f &mag_offsets = compass.get_offsets(mag_instance);
     const Vector3f &mag_motor_offsets = compass.get_motor_offsets(mag_instance);
@@ -418,7 +420,7 @@ void AP_Logger::Write_Compass_instance(const uint64_t time_us, const uint8_t mag
         LOG_PACKET_HEADER_INIT(LOG_MAG_MSG),
         time_us         : time_us,
         instance        : mag_instance,
-        mag_x           : (int16_t)mag_field.x,
+        mag_x           : (int16_t)my_mag_field_x,
         mag_y           : (int16_t)mag_field.y,
         mag_z           : (int16_t)mag_field.z,
         offset_x        : (int16_t)mag_offsets.x,
