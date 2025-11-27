@@ -410,12 +410,11 @@ void AP_Logger::Write_Radio(const mavlink_radio_t &packet)
 void AP_Logger::Write_Compass_instance(const uint64_t time_us, const uint8_t mag_instance)
 {
     const Compass &compass = AP::compass();
-
-    int16_t my_mag_field_x = (int16_t)mag_field.x;
     
     const Vector3f &mag_field = compass.get_field(mag_instance);
     const Vector3f &mag_offsets = compass.get_offsets(mag_instance);
     const Vector3f &mag_motor_offsets = compass.get_motor_offsets(mag_instance);
+    int16_t my_mag_field_x = (int16_t)mag_field.x;
     const struct log_MAG pkt{
         LOG_PACKET_HEADER_INIT(LOG_MAG_MSG),
         time_us         : time_us,
