@@ -411,7 +411,7 @@ void AP_Logger::Write_Compass_instance(const uint64_t time_us, const uint8_t mag
 {
     const Compass &compass = AP::compass();
 
-    int16_t my_mag_field_x = 100 * (int16_t)mag_field.x;
+    int16_t my_mag_field_x = (int16_t)mag_field.x;
     
     const Vector3f &mag_field = compass.get_field(mag_instance);
     const Vector3f &mag_offsets = compass.get_offsets(mag_instance);
